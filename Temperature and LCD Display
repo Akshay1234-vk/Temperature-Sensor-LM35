@@ -1,0 +1,48 @@
+#include <LiquidCrystal.h> // Including LCD Library
+LiquidCrystal lcd(3, 4, 5, 6, 7, 8); // Defining pins of LCD
+
+int Contrast = 20; 
+
+float temperature; // Temperature Variable
+
+void setup() {
+  
+analogWrite(2, Contrast);
+
+lcd.begin(16, 2); // Beginning the LCD Display
+
+// Printing initial texts on the LCD Display
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Welcome to ");
+  delay(1500);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(" Akshay's ");
+  lcd.setCursor(0, 1);
+  lcd.print("     Robotics");
+  delay(2000);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("  Temperature  ");
+  lcd.setCursor(0, 1);
+  lcd.print("Sensing Arduino");
+ 
+  
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  // Calculating Temperature
+temperature = analogRead(A0);
+temperature = temperature * 0.48828125;
+
+// Printing the Temperature
+lcd.clear();
+lcd.setCursor(0, 0);
+lcd.print("Temperature: ");
+lcd.setCursor(0, 1);
+lcd.print(temperature);
+delay(1000);
+}
